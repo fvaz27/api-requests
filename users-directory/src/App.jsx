@@ -14,6 +14,7 @@ function UserCard(props){
 
 export default function App() {
  const [users, setUsers] = useState([]) 
+ const [loading, setLoading] = useState(true)
 
  useEffect(()=>{
     console.log("page loaded") 
@@ -22,18 +23,21 @@ export default function App() {
         const data = await response.json()
         console.log(data)
         setUsers(data)
+        setLoading(false)
   }
   fetchUsers()
-  }, [])
+  }, []) 
 
-  
   return (
     <div>
       {
-        users.map((user)=> (
-          UserCard(user)
-        ))
+        loading ? 
+         <p>Loading </p> :
+            users.map((user)=> (
+            UserCard(user)
+        ))     
       }
+
     </div>
   )
 }
