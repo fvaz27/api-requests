@@ -3,7 +3,13 @@ import { useState, useEffect } from 'react'
 import './App.css'
 
 
-
+function UserCard(props){
+  return (
+    <div>
+      <p>{props.name} -- {props.email}</p>
+    </div>
+  )
+}
 
 
 export default function App() {
@@ -23,7 +29,11 @@ export default function App() {
   
   return (
     <div>
-
+      {
+        users.map((user)=> (
+          UserCard(user)
+        ))
+      }
     </div>
   )
 }
